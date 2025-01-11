@@ -128,32 +128,47 @@ const icon = {
 
 const routes = [
   {
-    name: "Dashboard",
+    name: "Thông tin - Điều trị", // Information - Treatment
     icon: <HomeIcon {...icon} />,
-    path: "/dashboard",
+    path: "/dashboard/treatment",
   },
   {
-    name: "Profile",
+    name: "Cài đặt - Quản lý", // Settings - Management
     icon: <UserCircleIcon {...icon} />,
     path: "/dashboard/profile",
   },
   {
-    name: "clients",
+    name: "Bán hàng - Pet shop", // Sales - Pet Shop
     icon: <UsersIcon {...icon} />,
     path: "/dashboard/clients",
   },
   {
-    name: "Employees",
+    name: "Nhập thuốc - Hàng hoá", // Inventory - Goods
     icon: <UserGroupIcon {...icon} />,
     path: "/dashboard/employees",
   },
   {
-    name: "Appointments",
+    name: "Thống kê - Doanh số", // Statistics - Revenue
+    icon: <UserGroupIcon {...icon} />,
+    path: "/dashboard/employees",
+  },
+  {
+    name: "Thống kê - Doanh số", // Statistics - Revenue
+    icon: <UserGroupIcon {...icon} />,
+    path: "/dashboard/employees",
+  },
+  {
+    name: "Lịch", // Calendar
     icon: <CalendarDaysIcon {...icon} />,
     path: "/dashboard/appointments",
   },
   {
-    name: "Notifications",
+    name: "Tiện ích - Thông báo", // Utilities - Notifications
+    icon: <BellIcon {...icon} />,
+    path: "/dashboard/notifications",
+  },
+  {
+    name: "Kết toán - Thu chi", // Accounting - Expenses and Revenue
     icon: <BellIcon {...icon} />,
     path: "/dashboard/notifications",
   },

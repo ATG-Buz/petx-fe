@@ -69,33 +69,19 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
-        token.user = user; // Add user details to the token
+        token.user = user as any; // Thêm thông tin user vào token
+        token.access_token = (user as any).access_token; // Lưu access_token vào token
       }
       return token;
     },
     session: async ({ session, token }) => {
       if (session.user) {
-        session.user = token.user; // Attach user details to the session
+        session.user = token.user; // Đính kèm user vào session
+        session.access_token = token.access_token; // Đính kèm access_token vào session
       }
       return session;
     },
   },
-  // callbacks: {
-  //   jwt: async ({ token, user }) => {
-  //     if (user)
-  //       token.user = {
-  //         ...token.user,
-  //         role: (user as unknown as UserProps).role,
-  //       };
-  //     return token;
-  //   },
-  //   session: async ({ session, token }) => {
-  //     if (session.user) {
-  //       session.user.role = token.user.role;
-  //     }
-  //     return session;
-  //   },
-  // },
 
   pages: {
     signIn: "/",

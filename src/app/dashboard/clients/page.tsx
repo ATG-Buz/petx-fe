@@ -5,7 +5,7 @@ import User from "@/database/models/User";
 export const revalidate = 0;
 
 const fetchClients = async () => {
-  await connectDB();
+  // await connectDB();
   const data = await User.find({
     role: "client",
   }).sort({ createdAt: -1 });

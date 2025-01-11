@@ -26,7 +26,7 @@ const LoginForm = () => {
   const router = useRouter();
   const params = useSearchParams();
   const query = params?.get("callbackUrl");
-
+  console.log('session',session)
   useEffect(() => {
     if (session) {
       router.replace(query ? query.toString() : "/dashboard");
@@ -42,11 +42,12 @@ const LoginForm = () => {
     setLoading(true);
 
     const res = await signIn("credentials", {
-      redirect: false,
+      redirect: true,
       email,
       password,
       callbackUrl: `${query ? query.toString() : "/dashboard"}`,
     });
+    console.log('res',res)
     setLoading(false);
 
     if (res?.error) {

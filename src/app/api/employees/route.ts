@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
         }
       );
     }
-    await connectDB();
+    // await connectDB();
 
     const user = await User.findOne({ email: session.user?.email });
     //   check if uses who has active session exists
@@ -118,7 +118,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    await connectDB();
+    // await connectDB();
 
     const user = await User.findOne({ email: session.user?.email });
     //   check if user who has active session exists
@@ -221,7 +221,7 @@ export async function DELETE(req: NextRequest) {
         }
       );
     }
-    await connectDB();
+    // await connectDB();
 
     const currUser = await User.findOne({ email: session.user?.email });
     //   check if uses who has active session exists

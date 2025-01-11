@@ -5,7 +5,7 @@ import User from "@/database/models/User";
 export const revalidate = 0;
 
 const fetchEmployees = async () => {
-  await connectDB();
+  // await connectDB();
   const data = await User.find({
     $or: [{ role: "nurse" }, { role: "doctor" }],
   }).sort({ createdAt: -1 });

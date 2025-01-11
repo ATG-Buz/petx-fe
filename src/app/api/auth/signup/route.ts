@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    await connectDB();
+    // await connectDB();
 
     const hashedPassword = await hashPassword(password);
 

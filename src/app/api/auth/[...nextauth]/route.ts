@@ -1,8 +1,22 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { apiInstance } from "../../apiInstance";
+import { API_URL } from "../../api-url";
 
-import connectDB from "@/database/connection";
-import User, { UserProps } from "@/database/models/User";
+// Utility functions for handling localStorage
+const saveSessionToLocalStorage = (session: any) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("offline-session", JSON.stringify(session));
+  }
+};
+
+const getSessionFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    const session = localStorage.getItem("offline-session");
+    return session ? JSON.parse(session) : null;
+  }
+  return null;
+};
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -19,40 +33,69 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        await connectDB();
+        try {
+          // Online authentication via Supabase API
+          const body = {
+            email: credentials?.email.trim(),
+            password: credentials?.password.trim(),
+          }
+          const response = await apiInstance.post(API_URL.SIGN_IN, body)
+          // const user = response?.data?.data
+          const user = {
+            email: response?.data?.user.email,
+            image: "",
+            name: `${response?.data.first_name} ${response?.data.last_name}`,
+            id: response?.data?.id.toString(),
+            role: 'client', // response?.data?.role_id,
+            access_token: response?.data?.session?.access_token,
+            refresh_token: response?.data?.session?.refresh_token,
+          }
 
-        const user = await User.findByCredentials(
-          credentials?.email.trim()!,
-          credentials?.password.trim()!
-        );
+          // Save session locally for offline mode
+          saveSessionToLocalStorage(user);
 
-        return {
-          email: user.email,
-          image: "",
-          name: `${user.firstName} ${user.lastName}`,
-          id: user._id.toString(),
-          role: user.role,
-        };
+          return user; // Return user details for session creation
+        } catch (error) {
+          // Fallback to offline session if available
+          const offlineSession = getSessionFromLocalStorage();
+          if (offlineSession) {
+            return offlineSession;
+          }
+          throw new Error("Unable to authenticate. Check your connection.");
+        }
       },
     }),
   ],
-
   callbacks: {
     jwt: async ({ token, user }) => {
-      if (user)
-        token.user = {
-          ...token.user,
-          role: (user as unknown as UserProps).role,
-        };
+      if (user) {
+        token.user = user; // Add user details to the token
+      }
       return token;
     },
     session: async ({ session, token }) => {
       if (session.user) {
-        session.user.role = token.user.role;
+        session.user = token.user; // Attach user details to the session
       }
       return session;
     },
   },
+  // callbacks: {
+  //   jwt: async ({ token, user }) => {
+  //     if (user)
+  //       token.user = {
+  //         ...token.user,
+  //         role: (user as unknown as UserProps).role,
+  //       };
+  //     return token;
+  //   },
+  //   session: async ({ session, token }) => {
+  //     if (session.user) {
+  //       session.user.role = token.user.role;
+  //     }
+  //     return session;
+  //   },
+  // },
 
   pages: {
     signIn: "/",

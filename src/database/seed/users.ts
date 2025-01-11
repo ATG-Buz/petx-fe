@@ -4,7 +4,7 @@ import User, { UserProps } from "../models/User";
 import connectDB from "../connection";
 
 const generateUsers = async (num: number) => {
-  await connectDB();
+  // await connectDB();
 
   const users: Omit<UserProps, "_id">[] = [];
 

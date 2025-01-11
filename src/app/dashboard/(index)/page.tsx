@@ -5,7 +5,7 @@ import User from "@/database/models/User";
 export const revalidate = 0;
 
 const fetchStatistics = async () => {
-  await connectDB();
+  // await connectDB();
   const employees = await User.find({
     $or: [
       {

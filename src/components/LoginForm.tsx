@@ -18,8 +18,8 @@ import { FormEvent, useState, useEffect } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("admin@gmail.com");
-  const [password, setPassword] = useState("admin@12345678");
+  const [email, setEmail] = useState("1@gmail.com");
+  const [password, setPassword] = useState("123456");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();

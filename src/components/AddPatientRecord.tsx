@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 
 const AddPatientRecord = () => {
@@ -6,7 +7,7 @@ const AddPatientRecord = () => {
       name: "",
       type: "",
       breed: "",
-      color: "",
+      color: "", 
       gender: "",
       weight: "",
       birthdate: "",
@@ -26,7 +27,7 @@ const AddPatientRecord = () => {
     payment: {
       method: "",
       amount: "",
-      status: "Paid",
+      status: "Đã thanh toán",
       paid_at: "",
     },
   });
@@ -83,168 +84,196 @@ const AddPatientRecord = () => {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Patient record added successfully!");
+        alert("Thêm hồ sơ bệnh nhân thành công!");
       } else {
-        console.error("Error:", data.error);
-        alert("Failed to add patient record.");
+        console.error("Lỗi:", data.error);
+        alert("Không thể thêm hồ sơ bệnh nhân.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("An unexpected error occurred.");
+      console.error("Lỗi:", error);
+      alert("Đã xảy ra lỗi không mong muốn.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add New Patient Record</h2>
+    <form onSubmit={handleSubmit} className="p-6 space-y-8">
+      <h2 className="text-2xl font-bold mb-6">Thêm Hồ Sơ Bệnh Nhân Mới</h2>
 
-      {/* Owner Information */}
-      <fieldset>
-        <legend>Owner Information</legend>
+      {/* Thông tin chủ sở hữu */}
+      <fieldset className="p-4 border rounded-lg space-y-4">
+        <legend className="font-semibold text-lg px-2">Thông tin chủ sở hữu</legend>
         <input
           type="text"
-          placeholder="Owner Name"
+          placeholder="Tên chủ sở hữu"
           value={formData.owner.name}
           onChange={(e) => handleChange("owner", "name", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="text"
-          placeholder="Phone"
+          placeholder="Số điện thoại"
           value={formData.owner.phone}
           onChange={(e) => handleChange("owner", "phone", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="email"
           placeholder="Email"
           value={formData.owner.email}
           onChange={(e) => handleChange("owner", "email", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="text"
-          placeholder="Address"
+          placeholder="Địa chỉ"
           value={formData.owner.address}
           onChange={(e) => handleChange("owner", "address", e.target.value)}
+          className="w-full p-2 border rounded"
         />
       </fieldset>
 
-      {/* Pet Information */}
-      <fieldset>
-        <legend>Pet Information</legend>
+      {/* Thông tin thú cưng */}
+      <fieldset className="p-4 border rounded-lg space-y-4">
+        <legend className="font-semibold text-lg px-2">Thông tin thú cưng</legend>
         <input
           type="text"
-          placeholder="Pet Name"
+          placeholder="Tên thú cưng"
           value={formData.pet.name}
           onChange={(e) => handleChange("pet", "name", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="text"
-          placeholder="Pet Type (e.g., Dog, Cat)"
+          placeholder="Loại (VD: Chó, Mèo)"
           value={formData.pet.type}
           onChange={(e) => handleChange("pet", "type", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="text"
-          placeholder="Breed"
+          placeholder="Giống"
           value={formData.pet.breed}
           onChange={(e) => handleChange("pet", "breed", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="text"
-          placeholder="Color"
+          placeholder="Màu sắc"
           value={formData.pet.color}
           onChange={(e) => handleChange("pet", "color", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="text"
-          placeholder="Gender"
+          placeholder="Giới tính"
           value={formData.pet.gender}
           onChange={(e) => handleChange("pet", "gender", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="number"
-          placeholder="Weight (kg)"
+          placeholder="Cân nặng (kg)"
           value={formData.pet.weight}
           onChange={(e) => handleChange("pet", "weight", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="date"
-          placeholder="Birthdate"
+          placeholder="Ngày sinh"
           value={formData.pet.birthdate}
           onChange={(e) => handleChange("pet", "birthdate", e.target.value)}
+          className="w-full p-2 border rounded"
         />
       </fieldset>
 
-      {/* Treatment Information */}
-      <fieldset>
-        <legend>Treatment Information</legend>
+      {/* Thông tin điều trị */}
+      <fieldset className="p-4 border rounded-lg space-y-4">
+        <legend className="font-semibold text-lg px-2">Thông tin điều trị</legend>
         <input
           type="text"
-          placeholder="Diagnosis"
+          placeholder="Chẩn đoán"
           value={formData.treatment.diagnosis}
           onChange={(e) => handleChange("treatment", "diagnosis", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="date"
-          placeholder="Treatment Date"
+          placeholder="Ngày điều trị"
           value={formData.treatment.treatment_date}
           onChange={(e) =>
             handleChange("treatment", "treatment_date", e.target.value)
           }
+          className="w-full p-2 border rounded"
         />
         {formData.treatment.medications.map((medication, index) => (
-          <div key={index}>
+          <div key={index} className="space-y-2">
             <input
               type="text"
-              placeholder="Medication Name"
+              placeholder="Tên thuốc"
               value={medication.medication_name}
               onChange={(e) =>
                 handleMedicationsChange(index, "medication_name", e.target.value)
               }
+              className="w-full p-2 border rounded"
             />
             <input
               type="text"
-              placeholder="Dosage"
+              placeholder="Liều lượng"
               value={medication.dosage}
               onChange={(e) =>
                 handleMedicationsChange(index, "dosage", e.target.value)
               }
+              className="w-full p-2 border rounded"
             />
           </div>
         ))}
-        <button type="button" onClick={addMedication}>
-          Add Medication
+        <button 
+          type="button" 
+          onClick={addMedication}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Thêm thuốc
         </button>
         <textarea
-          placeholder="Notes"
+          placeholder="Ghi chú"
           value={formData.treatment.notes}
           onChange={(e) => handleChange("treatment", "notes", e.target.value)}
+          className="w-full p-2 border rounded h-24"
         ></textarea>
       </fieldset>
 
-      {/* Payment Information */}
-      <fieldset>
-        <legend>Payment Information</legend>
+      {/* Thông tin thanh toán */}
+      <fieldset className="p-4 border rounded-lg space-y-4">
+        <legend className="font-semibold text-lg px-2">Thông tin thanh toán</legend>
         <input
           type="text"
-          placeholder="Payment Method (e.g., Cash, Credit Card)"
+          placeholder="Phương thức thanh toán (VD: Tiền mặt, Thẻ tín dụng)"
           value={formData.payment.method}
           onChange={(e) => handleChange("payment", "method", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="number"
-          placeholder="Amount"
+          placeholder="Số tiền"
           value={formData.payment.amount}
           onChange={(e) => handleChange("payment", "amount", e.target.value)}
+          className="w-full p-2 border rounded"
         />
         <input
           type="datetime-local"
-          placeholder="Payment Date"
+          placeholder="Ngày thanh toán"
           value={formData.payment.paid_at}
           onChange={(e) => handleChange("payment", "paid_at", e.target.value)}
+          className="w-full p-2 border rounded"
         />
       </fieldset>
 
-      <button type="submit">Submit</button>
+      <button 
+        type="submit"
+        className="w-full py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 font-semibold"
+      >
+        Gửi
+      </button>
     </form>
   );
 };

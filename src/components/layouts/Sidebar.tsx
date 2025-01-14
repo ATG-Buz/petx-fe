@@ -140,7 +140,7 @@ const routes = [
   {
     name: "Nhập thuốc - Hàng hoá", // Inventory - Goods
     icon: <UserGroupIcon {...icon} />,
-    path: "/dashboard/employees",
+    path: "/dashboard/import",
   },
   {
     name: "Lịch", // Calendar

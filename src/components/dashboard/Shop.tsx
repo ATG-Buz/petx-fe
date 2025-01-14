@@ -2,7 +2,7 @@
 
 import Tab from '../Tab'
 import SalesManager from '../shop/SalesManager';
-import InventoryManager from '../InventoryManager';
+// import InventoryManager from '../InventoryManager';
 import ReturnsManager from '../ReturnsManager';
 import EmployeeManager from '../EmployeeManager';
 
@@ -13,8 +13,8 @@ export default function Home() {
         switch (activeTab) {
           case 'sales':
             return <SalesManager />;
-          case 'inventory':
-            return <InventoryManager />;
+          // case 'inventory':
+          //   return <InventoryManager />;
           case 'returns':
             return <ReturnsManager />;
           case 'employees':

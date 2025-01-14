@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 const tabs = [
   { id: 'sales', label: 'Quản lý bán hàng' },
-  { id: 'inventory', label: 'Quản lý nhập hàng' },
+  // { id: 'inventory', label: 'Quản lý nhập hàng' },
   { id: 'returns', label: 'Quản lý trả hàng' },
   { id: 'employees', label: 'Quản lý nhân viên' },
 ];

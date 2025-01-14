@@ -133,27 +133,12 @@ const routes = [
     path: "/dashboard/treatment",
   },
   {
-    name: "Cài đặt - Quản lý", // Settings - Management
-    icon: <UserCircleIcon {...icon} />,
-    path: "/dashboard/profile",
-  },
-  {
     name: "Bán hàng - Pet shop", // Sales - Pet Shop
     icon: <UsersIcon {...icon} />,
-    path: "/dashboard/clients",
+    path: "/dashboard/shop",
   },
   {
     name: "Nhập thuốc - Hàng hoá", // Inventory - Goods
-    icon: <UserGroupIcon {...icon} />,
-    path: "/dashboard/employees",
-  },
-  {
-    name: "Thống kê - Doanh số", // Statistics - Revenue
-    icon: <UserGroupIcon {...icon} />,
-    path: "/dashboard/employees",
-  },
-  {
-    name: "Thống kê - Doanh số", // Statistics - Revenue
     icon: <UserGroupIcon {...icon} />,
     path: "/dashboard/employees",
   },
@@ -163,12 +148,22 @@ const routes = [
     path: "/dashboard/appointments",
   },
   {
-    name: "Tiện ích - Thông báo", // Utilities - Notifications
+    name: "Kết toán - Thu chi", // Accounting - Expenses and Revenue
     icon: <BellIcon {...icon} />,
     path: "/dashboard/notifications",
   },
   {
-    name: "Kết toán - Thu chi", // Accounting - Expenses and Revenue
+    name: "Thống kê - Doanh số", // Statistics - Revenue
+    icon: <UserGroupIcon {...icon} />,
+    path: "/dashboard/employees",
+  },
+  {
+    name: "Cài đặt - Quản lý", // Settings - Management
+    icon: <UserCircleIcon {...icon} />,
+    path: "/dashboard/profile",
+  },
+  {
+    name: "Tiện ích - Thông báo", // Utilities - Notifications
     icon: <BellIcon {...icon} />,
     path: "/dashboard/notifications",
   },

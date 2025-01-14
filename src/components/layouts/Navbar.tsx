@@ -78,9 +78,9 @@ const Navbar = () => {
               {currentPage}
             </Typography>
           </Breadcrumbs>
-          <Typography variant="h6" color="blue-gray">
+          {/* <Typography variant="h6" color="blue-gray">
             {currentPage.length > 0 ? currentPage : "Home"}
-          </Typography>
+          </Typography> */}
         </div>
         <div className="flex items-center">
           {/* <div className="mr-auto md:mr-4 md:w-56">
